@@ -10,7 +10,8 @@ Employee properties: first name, last name, email, sex, birth date, profile pict
 	
 Application must be fully responsive;
 	
-BONUS topics: search (by name and email), sortare (alfabetic dupa nume, dupa data nasterii), filtrare (dupa sex, range pt data nasterii, has profile picture) - done either server-side or locally.
+BONUS topics: search (by name and email), sortare (by name, birthdate), 
+filter (by sex, range for birthdate, has profile picture) - done either server-side or locally.
 ```
 
 ## Backend
