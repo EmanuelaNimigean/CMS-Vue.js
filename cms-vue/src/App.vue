@@ -1,26 +1,39 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Head></Head>
+  <body id="body">
+    <div class="parent">
+      <div class="title">
+        Employees ~ Content Management System
+      </div>
+
+      <div class="container">
+        <Searchbar></Searchbar>
+        <Table></Table>
+        <Buttons></Buttons>
+      </div>
+
+      <Modal></Modal>
+    </div>
+  </body>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Head from "./components/Head.vue";
+import Searchbar from "./components/Searchbar.vue";
+import Table from "./components/Table.vue";
+import Buttons from "./components/Buttons.vue";
+import Modal from "./components/Modal.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    Head,
+    Searchbar,
+    Table,
+    Buttons,
+    Modal
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style src="./styles/App.css"></style>
