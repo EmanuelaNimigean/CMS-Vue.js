@@ -1,0 +1,23 @@
+#searchImage {
+  width: 20px;
+  height: 18px;
+}
+
+#searchBarr {
+  background-color: rgba(188, 143, 143, 0.486);
+  border-radius: 5px;
+  width: 300px;
+  height: 30px;
+}
+
+.searchItems2 {
+  padding-bottom: 25px;
+  padding-left: 5px;
+  float: left;
+}
+
+.searchItems1 {
+  float: left;
+  padding-left: 20px;
+  border-radius: 15px;
+}
