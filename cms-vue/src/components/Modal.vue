@@ -70,7 +70,7 @@
             </div>
 
             <div class="mb-3">
-              <img id="defaultImg" src="/images/defaultImg.png" height="35" />
+              <img id="defaultImg" src="../assets/defaultImg.png" height="35" />
               <label for="picture" class="form-label">Picture</label>
               <input
                 class="form-control"

@@ -2,7 +2,7 @@
   <div class="searchBar">
     <div class="searchItems1">
       <button type="button" class="searchBtn">
-        <img id="searchImage" src="images\searchIcon.png" />
+        <img id="searchImage" src="../assets/searchIcon.png" />
       </button>
     </div>
     <div class="searchItems2">

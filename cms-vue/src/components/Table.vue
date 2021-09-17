@@ -9,7 +9,7 @@
               First name
               <img
                 id="sortImg"
-                src="/images/sort.png"
+                src="../assets/sort.png"
                 class="sortImg"
                 height="25"
               />
@@ -27,7 +27,7 @@
               Birthdate
               <img
                 id="sortImg"
-                src="/images/sort.png"
+                src="../assets/sort.png"
                 class="sortImg"
                 height="25"
               />
