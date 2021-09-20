@@ -87,7 +87,7 @@ export default {
   },
   mounted() {
     axios
-      .get(`${vars.API_URL}`)
+      .get(`${vars.API_URL}/Get`)
       .then((response) => {
         this.rows = response.data;
       })
@@ -100,9 +100,10 @@ export default {
   methods: {
     reloadData() {
       axios
-        .get(`${vars.API_URL}`)
+        .get(`${vars.API_URL}/Get`)
         .then((response) => {
           this.rows = response.data;
+          console.log(response.data);
         })
         .catch((error) => {
           this.errorMessage = error.message;
