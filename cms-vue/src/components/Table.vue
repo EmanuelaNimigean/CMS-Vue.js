@@ -43,7 +43,7 @@
             <td>{{ row.lastName }}</td>
             <td>{{ row.email }}</td>
             <td>{{ row.sex }}</td>
-            <td>{{ row.birthdate }}</td>
+            <td>{{ getHumanDate(row.birthdate) }}</td>
             <td>
               <img
                 src="../assets/del.png"
@@ -57,22 +57,13 @@
       </table>
     </div>
   </div>
-  <!-- <add-modal
-    v-for="row in rows"
-    :key="row.id"
-    :last-name="row.firstName"
-    :first-name="row.lastName"
-    :email="row.email"
-    :gender="row.sex"
-    :birth-date="row.birthdate"
-    @add-new-row="addNewItem"
-  ></add-modal> -->
 </template>
 
 <script>
 import axios from "axios";
 import vars from "../vars";
 import Modal from "./Modal.vue";
+import moment from "moment";
 
 export default {
   name: "table-template",
@@ -98,6 +89,9 @@ export default {
       .finally(() => (this.loading = false));
   },
   methods: {
+    getHumanDate: function (date) {
+      return moment(date, "YYYY-MM-DD").format("D MMMM YYYY");
+    },
     reloadData() {
       axios
         .get(`${vars.API_URL}/Get`)
