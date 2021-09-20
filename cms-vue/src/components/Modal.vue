@@ -103,4 +103,8 @@
   </div>
 </template>
 
+<script>
+
+</script>
+
 <style src="../styles/Modal.css"></style>
