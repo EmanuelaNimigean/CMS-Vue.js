@@ -114,7 +114,7 @@ export default {
       console.log("new item: " + this.rows);
     },
     showAddModal(row) {
-      document.getElementById("modal").style.display = "block";
+      document.getElementById("myModal").style.display = "block";
       this.id = row.id;
     },
     deleteRow(row) {

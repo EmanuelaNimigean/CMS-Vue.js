@@ -4,6 +4,7 @@
       type="button"
       class="addBtn"
       id="modalButton"
+      v-on:click="showAddModal()"
       data-bs-toggle="modal"
       data-bs-target="#myModal"
     >
@@ -27,9 +28,16 @@
 </template>
 
 <script>
-
+export default {
+  methods:{
+      showAddModal(){
+            document.getElementById("myModal").style.display="block";
+            document.getElementById("myModal").classList.add("show");
+        },
+       
+  }
+};
 </script>
-
 
 
 <style src="../styles/Buttons.css"></style>

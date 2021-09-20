@@ -10,6 +10,7 @@
             type="button"
             class="btn-close close-myModal"
             data-bs-dismiss="modal"
+            v-on:click="closeModal()"
           ></button>
         </div>
 
@@ -83,7 +84,6 @@
                 id="defaultImg"
                 src="../assets/defaultImg.png"
                 height="35"
-                v-bind:src="picture"
               />
               <label for="picture" class="form-label">Picture</label>
               <input
@@ -101,6 +101,7 @@
             type="submit"
             class="btn close-myModal"
             data-bs-dismiss="modal"
+            v-on:click="closeModal()"
           >
             Close
           </button>
@@ -136,7 +137,8 @@ export default {
   },
   methods: {
     closeModal() {
-      document.getElementById("modal").style.display = "none";
+      document.getElementById("myModal").style.display = "none";
+      document.getElementById("myModal").classList.remove("show");
     },
     submitForm() {
       axios
