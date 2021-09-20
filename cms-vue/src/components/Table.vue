@@ -1,5 +1,5 @@
 <template>
-<modal @new-employee-added="reloadData"/>
+  <modal @new-employee-added="reloadData" />
   <div class="employeesTableContainer">
     <div class="employeesTableClass">
       <table class="empTableClass" id="employeesTable">
@@ -81,50 +81,55 @@ export default {
   },
   data() {
     return {
-      loading:true,
-      rows:[],
+      loading: true,
+      rows: [],
     };
   },
-  mounted(){
-    axios.get(`${vars.API_URL}`)
-    .then(response=>{
-      this.rows=response.data;
-    })
-    .catch(error=>{
-      this.errorMessage=error.message;
-      console.error("There was an error!", error);
-    })
-    .finally(()=>this.loading=false);
+  mounted() {
+    axios
+      .get(`${vars.API_URL}`)
+      .then((response) => {
+        this.rows = response.data;
+      })
+      .catch((error) => {
+        this.errorMessage = error.message;
+        console.error("There was an error!", error);
+      })
+      .finally(() => (this.loading = false));
   },
-  methods:{
-    reloadData(){
-      axios.get(`${vars.API_URL}`)
-      .then(response=>{
-        this.rows=response.data;
-      })
-      .catch(error=>{
-        this.errorMessage=error.message;
-        console.error("There was an error!",error);
-      })
-      .finally(()=>this.loading=false);
-    },
-    addNewItem(){
-      console.log("new item: "+this.rows);
-    },
-    showAddModal(row){
-      document.getElementById("modal").style.display = "block";
-      this.id=row.id;
-    },
-    deleteRow(row) {
-      axios.delete(`${vars.API_URL}/${row.id}`)
-        .then(() => {
-          this.rows = this.rows.filter((e) => { return e.id !== row.id }) ;
+  methods: {
+    reloadData() {
+      axios
+        .get(`${vars.API_URL}`)
+        .then((response) => {
+          this.rows = response.data;
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.error("There was an error!", error);
         })
-        .finally(() => this.loading = false);
+        .finally(() => (this.loading = false));
+    },
+    addNewItem() {
+      console.log("new item: " + this.rows);
+    },
+    showAddModal(row) {
+      document.getElementById("modal").style.display = "block";
+      this.id = row.id;
+    },
+    deleteRow(row) {
+      axios
+        .delete(`${vars.API_URL}/${row.id}`)
+        .then(() => {
+          this.rows = this.rows.filter((e) => {
+            return e.id !== row.id;
+          });
+        })
+        .catch((error) => {
+          this.errorMessage = error.message;
+          console.error("There was an error!", error);
+        })
+        .finally(() => (this.loading = false));
     },
   },
 };
