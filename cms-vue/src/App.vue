@@ -23,6 +23,9 @@ import Searchbar from "./components/Searchbar.vue";
 import Table from "./components/Table.vue";
 import Buttons from "./components/Buttons.vue";
 import Modal from "./components/Modal.vue";
+import axios from 'axios';
+import vars from "./vars";
+import reloadData from "./components/Table.vue"
 
 export default {
   name: "App",
@@ -33,6 +36,35 @@ export default {
     Buttons,
     Modal
   },
+  methods:{
+    searchEmployee(name) {
+      if (name !== "") {
+      axios
+        .get(`${vars.API_URL}/GetByName/${name}`)
+        .then((response) => {
+          this.rows = response.data;
+          console.log(response.data);
+        })
+        .catch((error) => {
+          this.errorMessage = error.message;
+          console.error("There was an error!", error);
+        })
+        .finally(() => (this.loading = false));
+      }else {
+        reloadData();
+      }
+
+      // if (name !== "") {
+      //   searchByName(name).then((response) => {
+      //     this.rows = response.data;
+      //   });
+      // } else {
+      //   getAllEmployees().then((response) => {
+      //     this.rows = response.data;
+      //   });
+      // }
+    },
+  }
 };
 </script>
 

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css\index.css" />
     <script src="\js\index.js" type="module"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="sweetalert2/dist/sweetalert2.all.min.js"></script>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
       rel="stylesheet"

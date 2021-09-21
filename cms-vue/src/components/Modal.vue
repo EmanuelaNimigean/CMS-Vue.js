@@ -87,7 +87,6 @@
                 type="file"
                 id="picture"
                 accept="images/*"
-    
               />
             </div>
           </form>
@@ -120,22 +119,23 @@
 import axios from "axios";
 import vars from "../vars";
 import moment from "moment";
+//import Swal from 'sweetalert2/src/sweetalert2.js'
 
 export default {
   data() {
-    const date=moment()
-  .subtract(16 * 12, "M")
-  .format("YYYY-MM-DD")
+    const date = moment()
+      .subtract(16 * 12, "M")
+      .format("YYYY-MM-DD");
     return {
       employee: {
-        picture: "defaultImg.png",
+        picture: "../assets/defaultImg.png",
         firstName: "",
         lastName: "",
         email: "",
         sex: "",
         birthdate: "",
       },
-      maxBirthdate : date
+      maxBirthdate: date,
     };
   },
   methods: {
@@ -143,50 +143,58 @@ export default {
       document.getElementById("myModal").style.display = "none";
       document.getElementById("myModal").classList.remove("show");
     },
+    clearModal() {
+      document.getElementById("first-name").value = "";
+      document.getElementById("last-name").value = "";
+      document.getElementById("email-input").value = "";
+      document.getElementById("sex-input").value = "";
+      document.getElementById("birthdate-input").value = "";
+      document.getElementById("picture").value = "";
+    },
+    alert(msg) {
+      if (msg === undefined) msg = 'Undefined';
+      if (msg === '') msg = 'Empty String';
+      alert(msg);
+    },
     addEmployee() {
-      // this.birthdate = moment(this.birthdate).format('MMM DD YYYY');
-        if (this.lastName === "") {
-                alert("LastName missing!");
-                return false;
-            }
-            if (this.firstName === "") {
-                alert("FirstName missing!");
-                return false;
-            }
-            if (this.email === "") {
-                alert("Email missing!");
-                return false;
-            }
-            if (this.sex === "") {
-                alert("sex missing!");
-                return false;
-            }
-            if (this.birthdate === "") {
-                alert("Birthdate missing!");
-                return false;
-            }
-            // const emp={
-            //   firstName:"${this.employee.firstName}",
-            //   lastName:"${this.employee.lastName}",
-            //   email:"${this.employee.email}",
-            //   birthdate:"${this.employee.birthdate}",
-            //   sex:"${this.employee.sex}",
-            //   picture:"${this.employee.picture}",
-            // }
+      // Swal.fire('Hello world!');
+      // alert("FirstName missing!");
+      if (this.lastName == "" || this.lastName== null ) {
+        alert("LastName missing!");
+        return false;
+      }
+      if (this.firstName == "" || this.firstName== null) {
+        alert("FirstName missing!");
+        return false;
+      }
+      if (this.email == "" || this.email== null) {
+        alert("Email missing!");
+        return false;
+      }
+      if (this.sex == "" || this.sex== null) {
+        alert("sex missing!");
+        return false;
+      }
+      if (this.birthdate == "" || this.birthdate== null) {
+        alert("Birthdate missing!");
+        return false;
+      }
       axios
-        .post(`${vars.API_URL}/Insert`,  `firstName=${this.employee.firstName}&lastName=${this.employee.lastName}&email=${this.employee.email}&birthdate=${this.employee.birthdate}&sex=${this.employee.sex}&picture=${this.employee.picture}`
-   )
+        .post(
+          `${vars.API_URL}/Insert`,
+          `firstName=${this.employee.firstName}&lastName=${this.employee.lastName}&email=${this.employee.email}&birthdate=${this.employee.birthdate}&sex=${this.employee.sex}&picture=${this.employee.picture}`
+        )
         .then((response) => {
           console.log(response.data);
-          location.reload();
         })
         .catch((error) => {
           this.errorMessage = error.message;
           console.error("There was an error!", error);
         })
         .finally(() => {
-          this.$emit("new-employee-added");
+          this.$emit("employee-added-or-removed");
           this.closeModal();
+          this.clearModal();
         });
     },
   },
