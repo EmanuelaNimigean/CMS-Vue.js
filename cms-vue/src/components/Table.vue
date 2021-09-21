@@ -50,6 +50,7 @@
                 height="30"
                 class="del"
                 id="row.id"
+                v-on:click="deleteEmployee(row.id)"
               />
             </td>
           </tr>
@@ -112,12 +113,12 @@ export default {
       document.getElementById("myModal").style.display = "block";
       this.id = row.id;
     },
-    deleteRow(row) {
+    deleteEmployee(id) {
       axios
-        .delete(`${vars.API_URL}/${row.id}`)
+        .delete(`${vars.API_URL}/Delete/${id}`)
         .then(() => {
           this.rows = this.rows.filter((e) => {
-            return e.id !== row.id;
+            return e.id !== id;
           });
         })
         .catch((error) => {

@@ -15,7 +15,7 @@
         </div>
 
         <div class="modal-body">
-          <form>
+          <form id="form" @submit.prevent="submitForm">
             <div class="mb-3">
               <label for="first-name" class="form-label">First name</label>
               <input
@@ -73,24 +73,21 @@
                 class="form-control"
                 id="birthdate-input"
                 v-model="employee.birthdate"
-                max="2011-11-11"
+                max="maxBirthdate"
                 placeholder=""
                 required
               />
             </div>
 
             <div class="mb-3">
-              <img
-                id="defaultImg"
-                src="../assets/defaultImg.png"
-                height="35"
-              />
+              <img id="defaultImg" src="../assets/defaultImg.png" height="35" />
               <label for="picture" class="form-label">Picture</label>
               <input
                 class="form-control"
                 type="file"
                 id="picture"
                 accept="images/*"
+    
               />
             </div>
           </form>
@@ -109,6 +106,7 @@
             type="submit"
             class="btn save-myModal"
             id="add-employee-button"
+            @click="addEmployee"
           >
             Save
           </button>
@@ -121,9 +119,13 @@
 <script>
 import axios from "axios";
 import vars from "../vars";
+import moment from "moment";
 
 export default {
   data() {
+    const date=moment()
+  .subtract(16 * 12, "M")
+  .format("YYYY-MM-DD")
     return {
       employee: {
         picture: "defaultImg.png",
@@ -133,6 +135,7 @@ export default {
         sex: "",
         birthdate: "",
       },
+      maxBirthdate : date
     };
   },
   methods: {
@@ -140,18 +143,33 @@ export default {
       document.getElementById("myModal").style.display = "none";
       document.getElementById("myModal").classList.remove("show");
     },
-    submitForm() {
+    addEmployee() {
+      // this.birthdate = moment(this.birthdate).format('MMM DD YYYY');
+        if (this.lastName === "") {
+                alert("LastName missing!");
+                return false;
+            }
+            if (this.firstName === "") {
+                alert("FirstName missing!");
+                return false;
+            }
+            if (this.email === "") {
+                alert("Email missing!");
+                return false;
+            }
+            if (this.sex === "") {
+                alert("sex missing!");
+                return false;
+            }
+            if (this.birthdate === "") {
+                alert("Birthdate missing!");
+                return false;
+            }
       axios
-        .post(`${vars.API_URL}`, {
-          picture: this.employee.picture,
-          firstName: this.employee.firstName,
-          lastName: this.employee.lastName,
-          email: this.employee.email,
-          sex: this.employee.sex,
-          birthdate: this.employee.birthdate,
-        })
+        .post(`${vars.API_URL}/Insert`,  `{"firstName":"${this.employee.firstName}","lastName":"${this.employee.lastName}","email":"${this.employee.email}","birthdate":"${this.employee.birthdate}","sex":"${this.employee.sex}","picture":"${this.employee.picture}"}`)
         .then((response) => {
-          this.rows = response.data;
+          console.log(response.data);
+          location.reload();
         })
         .catch((error) => {
           this.errorMessage = error.message;
