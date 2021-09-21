@@ -165,8 +165,17 @@ export default {
                 alert("Birthdate missing!");
                 return false;
             }
+            // const emp={
+            //   firstName:"${this.employee.firstName}",
+            //   lastName:"${this.employee.lastName}",
+            //   email:"${this.employee.email}",
+            //   birthdate:"${this.employee.birthdate}",
+            //   sex:"${this.employee.sex}",
+            //   picture:"${this.employee.picture}",
+            // }
       axios
-        .post(`${vars.API_URL}/Insert`,  `{"firstName":"${this.employee.firstName}","lastName":"${this.employee.lastName}","email":"${this.employee.email}","birthdate":"${this.employee.birthdate}","sex":"${this.employee.sex}","picture":"${this.employee.picture}"}`)
+        .post(`${vars.API_URL}/Insert`,  `firstName=${this.employee.firstName}&lastName=${this.employee.lastName}&email=${this.employee.email}&birthdate=${this.employee.birthdate}&sex=${this.employee.sex}&picture=${this.employee.picture}`
+   )
         .then((response) => {
           console.log(response.data);
           location.reload();
