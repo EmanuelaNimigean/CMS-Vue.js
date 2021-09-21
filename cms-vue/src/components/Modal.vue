@@ -152,33 +152,40 @@ export default {
       document.getElementById("picture").value = "";
     },
     alert(msg) {
-      if (msg === undefined) msg = 'Undefined';
-      if (msg === '') msg = 'Empty String';
+      if (msg === undefined) msg = "Undefined";
+      if (msg === "") msg = "Empty String";
       alert(msg);
+    },
+    validateForm() {
+      var invalid = "";
+      if (this.employee.firstName === "") {
+        invalid+="FirstName missing!\n";
+      }
+      if (this.employee.lastName === "") {
+        invalid+="LastName missing!\n";
+      }
+      if (this.employee.email === "") {
+        invalid+="Email missing!\n";
+      } else {
+        //eslint-disable-next-line
+        const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/g;
+        if (!regex.test(this.employee.email)) {
+          invalid+="Email is invalid!\n";
+        }
+      }
+      if (this.employee.sex === "" || this.employee.sex === null) {
+        invalid+="Sex missing!\n";
+      }
+      if (this.employee.birthdate === "" || this.employee.birthdate === null) {
+        invalid+="Birthdate missing!";
+      }
+      if (invalid.length === 0) return true;
+      alert(invalid); return false;
     },
     addEmployee() {
       // Swal.fire('Hello world!');
       // alert("FirstName missing!");
-      if (this.lastName == "" || this.lastName== null ) {
-        alert("LastName missing!");
-        return false;
-      }
-      if (this.firstName == "" || this.firstName== null) {
-        alert("FirstName missing!");
-        return false;
-      }
-      if (this.email == "" || this.email== null) {
-        alert("Email missing!");
-        return false;
-      }
-      if (this.sex == "" || this.sex== null) {
-        alert("sex missing!");
-        return false;
-      }
-      if (this.birthdate == "" || this.birthdate== null) {
-        alert("Birthdate missing!");
-        return false;
-      }
+       if(this.validateForm()) {
       axios
         .post(
           `${vars.API_URL}/Insert`,
@@ -196,6 +203,7 @@ export default {
           this.closeModal();
           this.clearModal();
         });
+       }
     },
   },
 };

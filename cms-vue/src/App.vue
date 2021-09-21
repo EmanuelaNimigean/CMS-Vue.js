@@ -1,6 +1,7 @@
 <template>
   <Head></Head>
   <body id="body">
+    
     <div class="parent">
       <div class="title">
         Employees ~ Content Management System
